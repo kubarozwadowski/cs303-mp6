@@ -18,6 +18,18 @@ export function GET(request: Request) {
     response.headers.set("Cache-Control", "no-store");
     return response;
   } catch {
+    let validHttpsRedirect = false;
+    try {
+      validHttpsRedirect = new URL(process.env.GITHUB_REDIRECT_URI || "").protocol === "https:";
+    } catch {
+      // Report validity without logging the environment variable's value.
+    }
+    console.error("GitHub OAuth configuration check", {
+      GITHUB_CLIENT_ID_present: Boolean(process.env.GITHUB_CLIENT_ID),
+      GITHUB_CLIENT_SECRET_present: Boolean(process.env.GITHUB_CLIENT_SECRET),
+      GITHUB_REDIRECT_URI_present: Boolean(process.env.GITHUB_REDIRECT_URI),
+      validHttpsRedirect,
+    });
     return NextResponse.redirect(new URL("/?error=configuration", request.url));
   }
 }
