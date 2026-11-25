@@ -22,12 +22,14 @@ export function GET(request: Request) {
     try {
       validHttpsRedirect = new URL(process.env.GITHUB_REDIRECT_URI || "").protocol === "https:";
     } catch {
-      // Report validity without logging the environment variable's value.
+      // The diagnostic below identifies malformed callback URLs.
     }
     console.error("GitHub OAuth configuration check", {
       GITHUB_CLIENT_ID_present: Boolean(process.env.GITHUB_CLIENT_ID),
       GITHUB_CLIENT_SECRET_present: Boolean(process.env.GITHUB_CLIENT_SECRET),
       GITHUB_REDIRECT_URI_present: Boolean(process.env.GITHUB_REDIRECT_URI),
+      // The callback URL is public. Never log the client secret or access token.
+      redirectUriReceived: JSON.stringify(process.env.GITHUB_REDIRECT_URI),
       validHttpsRedirect,
     });
     return NextResponse.redirect(new URL("/?error=configuration", request.url));
