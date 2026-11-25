@@ -1,0 +1,18 @@
+:root { color-scheme: light; --purple: #592589; --ink: #301748; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f1eaf7; color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
+main { width: min(100% - 40px, 470px); margin: 12vh auto 40px; }
+.card { background: #fff; padding: 36px; border: 1px solid #d9c8e7; border-radius: 8px; }
+h1 { margin: 0 0 14px; font-size: 36px; font-weight: 600; line-height: 1.15; overflow-wrap: anywhere; }
+.intro { color: #6d5b7b; margin: 0 0 28px; font-size: 16px; line-height: 1.6; }
+.button, button { display: block; width: 100%; padding: 15px 18px; background: var(--purple); border: 0; border-radius: 5px; color: white; text-align: center; text-decoration: none; font: inherit; cursor: pointer; }
+.button:hover, button:hover { background: #421866; }
+a:focus-visible, button:focus-visible { outline: 3px solid #b17bdb; outline-offset: 4px; }
+.error { padding: 14px; margin: 0 0 20px; background: #fff1f4; color: #872b47; font-size: 14px; line-height: 1.5; border-left: 3px solid #b44365; }
+.avatar { display: block; border-radius: 50%; margin: 0 0 20px; background: #f1eaf7; }
+dl { margin: 0 0 20px; }
+dl div { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid #eee5f4; font-size: 14px; }
+dt { color: #756582; }
+dd { margin: 0; overflow-wrap: anywhere; text-align: right; }
+.profile-link { display: inline-block; color: var(--purple); margin: 0 0 28px; font-size: 14px; text-underline-offset: 3px; }
+@media (max-width: 480px) { main { margin-top: 8vh; } .card { padding: 26px; } h1 { font-size: 31px; } }
